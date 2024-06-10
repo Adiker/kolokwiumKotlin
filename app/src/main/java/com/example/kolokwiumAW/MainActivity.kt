@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
             else if (bmi >= 29 && bmi < 39)
             {
-                info = "OTYŁOŚĆ, OGARNIJ SIE"
+                info = "Otyłość"
             }
         }
         else if (binding.radioButtonMale.isChecked)
