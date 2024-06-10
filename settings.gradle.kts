@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "kolos"
+rootProject.name = "kolokwiumAW"
 include(":app")
