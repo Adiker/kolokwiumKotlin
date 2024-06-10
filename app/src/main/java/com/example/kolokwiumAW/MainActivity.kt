@@ -1,13 +1,9 @@
-package com.example.kolos
+package com.example.kolokwiumAW
 
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.kolos.databinding.ActivityMainBinding
+import com.example.kolokwiumAW.databinding.ActivityMainBinding
 import kotlin.math.*
 
 class MainActivity : AppCompatActivity() {
@@ -71,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             }
             else if (bmi >= 30 && bmi < 40)
             {
-                info = "OTYŁOŚĆ, OGARNIJ SIE"
+                info = "Otyłość"
             }
         }
         Toast.makeText(this,info,Toast.LENGTH_SHORT).show()

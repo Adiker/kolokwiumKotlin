@@ -1,4 +1,4 @@
-package com.example.kolos
+package com.example.kolokwiumAW
 
 import org.junit.Test
 
