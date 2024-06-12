@@ -1,5 +1,6 @@
 package com.example.kolokwiumAW
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,9 +14,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.buttonBmi.setOnClickListener()
+        binding.buttonOblicz.setOnClickListener()
         {
             bmi()
+            ppm()
+            cpm()
         }
         binding.buttonHistory.setOnClickListener()
         {
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    @SuppressLint("SuspiciousIndentation")
     private fun bmi()
     {
         var masa = binding.masaText.text.toString().toDouble()
@@ -30,47 +34,128 @@ class MainActivity : AppCompatActivity() {
         var bmi = masa/(wzrost/100).pow(2)
         var bmiText = "Twoje BMI wynosi: %.2f".format(bmi)
         Toast.makeText(this, bmiText, Toast.LENGTH_SHORT).show()
-        history.add("%.2f".format(bmi))
+        history.add("BMI: %.2f".format(bmi))
         var info : String = ""
-        if (binding.radioButtonFemale.isChecked)
-        {
-            if (bmi < 19)
+
+            if (bmi < 16)
             {
-                info = "Niedowaga"
+                info = "Wygłodzenie"
             }
-            else if(bmi >= 19 && bmi < 24)
+            else if(bmi >= 16 && bmi <= 16.99)
             {
-                info = "Waga prawidłowa"
+                info = "Wychudzenie"
             }
-            else if(bmi >= 24 && bmi < 29)
+            else if(bmi >= 17 && bmi <= 24.99)
             {
-                info = "Nadwaga"
+                info = "Prawidłowa"
             }
-            else if (bmi >= 29 && bmi < 39)
-            {
-                info = "Otyłość"
-            }
-        }
-        else if (binding.radioButtonMale.isChecked)
-        {
-            if (bmi < 20)
-            {
-                info = "Niedowaga"
-            }
-            else if(bmi >= 20 && bmi < 25)
-            {
-                info = "Waga prawidłowa"
-            }
-            else if(bmi >= 25 && bmi < 30)
+            else if (bmi >= 25 && bmi <= 29.99)
             {
                 info = "Nadwaga"
             }
-            else if (bmi >= 30 && bmi < 40)
+            else if (bmi >= 30 && bmi <= 34.99)
             {
-                info = "Otyłość"
+                info = "1 stopień OTYŁOŚCI"
             }
-        }
+            else if (bmi >= 35 && bmi <= 39.99)
+            {
+                info = "2 stopień OTYŁOŚCI"
+            }
+            else if (bmi >= 40)
+            {
+                info = "OTYŁOŚĆ skrajna"
+            }
+
+
         Toast.makeText(this,info,Toast.LENGTH_SHORT).show()
+    }
+    private fun ppm()
+    {
+        var masa = binding.masaText.text.toString().toDouble()
+        var wzrost = binding.heightText.text.toString().toDouble()
+        var wiek = binding.ageText.text.toString().toDouble()
+        var ppm = (10*masa)+(6.25*wzrost)-(5*wiek)+5
+        history.add("PPM: %.2f".format(ppm))
+        var info = "Twoje PPM wynosi: %.2f".format(ppm)
+        Toast.makeText(this, info, Toast.LENGTH_SHORT).show()
+    }
+    private fun cpm()
+    {
+        var masa = binding.masaText.text.toString().toDouble()
+        var wzrost = binding.heightText.text.toString().toDouble()
+        var wiek = binding.ageText.text.toString().toDouble()
+        var ppm = (10*masa)+(6.25*wzrost)-(5*wiek)+5
+        var cpm : Double = 0.0
+        var info : String = ""
+        if(binding.radioButtonMale.isChecked)
+        {
+            if(binding.akt1.isChecked)
+            {
+                cpm = ppm * 1.2
+                info = "Brak aktywności"
+            }
+            else if(binding.akt2.isChecked)
+            {
+                cpm = ppm * 1.3
+                info = "Bardzo lekka aktywność (1 dzień w tygodniu"
+            }
+            else if(binding.akt3.isChecked)
+            {
+                cpm = ppm * 1.6
+                info = "Lekka aktywność (2-3 dni w tygodniu)"
+            }
+            else if(binding.akt4.isChecked)
+            {
+                cpm = ppm * 1.7
+                info = "Lekka aktywność (2-3 dni w tygodniu)"
+            }
+            else if(binding.akt5.isChecked)
+            {
+                cpm = ppm * 2.1
+                info = "Duża aktywność (codziennie)"
+            }
+            else if(binding.akt6.isChecked)
+            {
+                cpm = ppm * 2.4
+                info = "Bardzo duża aktywność"
+            }
+
+        }
+        else if(binding.radioButtonFemale.isChecked)
+        {
+            if(binding.akt1.isChecked)
+            {
+                cpm = ppm * 1.2
+                info = "Brak aktywności"
+            }
+            else if(binding.akt2.isChecked)
+            {
+                cpm = ppm * 1.3
+                info = "Bardzo lekka aktywność (1 dzień w tygodniu)"
+            }
+            else if(binding.akt3.isChecked)
+            {
+                cpm = ppm * 1.5
+                info = "Lekka aktywność (2-3 dni w tygodniu)"
+            }
+            else if(binding.akt4.isChecked)
+            {
+                cpm = ppm * 1.6
+                info = "Lekka aktywność (2-3 dni w tygodniu)"
+            }
+            else if(binding.akt5.isChecked)
+            {
+                cpm = ppm * 1.9
+                info = "Duża aktywność (codziennie)"
+            }
+            else if(binding.akt6.isChecked)
+            {
+                cpm = ppm * 2.2
+                info = "Bardzo duża aktywność"
+            }
+        }
+        history.add("CPM: %.2f".format(cpm))
+        Toast.makeText(this, info, Toast.LENGTH_SHORT).show()
     }
     private fun history()
     {
