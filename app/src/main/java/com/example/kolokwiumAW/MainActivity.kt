@@ -1,6 +1,5 @@
 package com.example.kolokwiumAW
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    @SuppressLint("SuspiciousIndentation")
     private fun bmi()
     {
         var masa = binding.masaText.text.toString().toDouble()
